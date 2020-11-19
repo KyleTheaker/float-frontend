@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+
 import { Provider } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
+
 import loginReducer from './Reducers/Login/loginReducer'
 import logoutReducer from './Reducers/Logout/logoutReducer'
 
