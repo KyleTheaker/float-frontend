@@ -2,29 +2,41 @@ import React, { Component } from 'react'
 
 //MAKE SURE COMPONENTS THAT USE THESE IMPORTS WORK BERFORE MOVING ON TO NEXT SET
 import { connect } from 'react-redux'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import { fetchLogin } from './Actions/loginActions'
+import { fetchPosts } from './Actions/postActions'
 
 //MAKE SURE ABOVE IMPORTS ARE WORKING BEFORE YOU TACKLE THESE
 // import { Route, Switch, withRouter } from 'react-router-dom'
 
+//Other imports, nothing too complicated here
 import LoginContainer from './Containers/Login/LoginContainer'
+import HomeContainer from './Containers/User/HomeContainer'
 
 class App extends Component {
+
+  //render components
+  handleLogin = () => <LoginContainer fetchLogin={this.props.fetchLogin} />
+  handleHome = () => <HomeContainer fetchPosts={this.props.fetchPosts} posts={this.props.posts} />
+
   render() {
-    console.log(this.props.users);
+    // console.log(this.props.users);
     return (
       <div className="App">
-        <LoginContainer fetchLogin={this.props.fetchLogin} />
+        <Switch>
+          <Route path='/' exact component={this.handleLogin} />
+          <Route path='/home' exact component={this.handleHome} />
+        </Switch>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     users: state.users,
-    token: state.token,
-    requesting: state.requesting
+    posts: state.posts
   }
 }
 
@@ -34,4 +46,4 @@ const mapStateToProps = state => {
 //   }
 // }
 
-export default connect(mapStateToProps, { fetchLogin })(App)
+export default connect(mapStateToProps, { fetchLogin, fetchPosts })(withRouter(App))

@@ -17,6 +17,10 @@ class LoginForm extends Component {
         e.preventDefault()
         console.log(this.state)
         this.props.fetchLogin(this.state)
+        this.setState({
+            username: '',
+            password: ''
+        })
     }
 
     render() {
