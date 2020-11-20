@@ -9,11 +9,17 @@ class HomeContainer extends Component {
     }
 
     render() {
-        // console.log(this.props.posts[0].post)
         return (
-            <div>
+            <div className='container'>
                 Home Page
-                <PostContainer posts={this.props.posts} />
+                <div className='row'>
+                    <div className='col-sm'>
+                        <h1>Menu</h1>
+                    </div>
+                    <div className='col-md-8'>
+                        <PostContainer posts={this.props.posts} />
+                    </div>
+                </div>
             </div>
         )
     }

@@ -5,13 +5,12 @@ import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { fetchLogin } from './Actions/loginActions'
 import { fetchPosts } from './Actions/postActions'
-
-//MAKE SURE ABOVE IMPORTS ARE WORKING BEFORE YOU TACKLE THESE
-// import { Route, Switch, withRouter } from 'react-router-dom'
+import { getProfileFetch } from './Actions/loginActions'
 
 //Other imports, nothing too complicated here
 import LoginContainer from './Containers/Login/LoginContainer'
 import HomeContainer from './Containers/User/HomeContainer'
+import UserNavBar from './Components/User/UserNavBar'
 
 class App extends Component {
 
@@ -19,10 +18,14 @@ class App extends Component {
   handleLogin = () => <LoginContainer fetchLogin={this.props.fetchLogin} />
   handleHome = () => <HomeContainer fetchPosts={this.props.fetchPosts} posts={this.props.posts} />
 
+  componentDidMount() {
+    this.props.getProfileFetch()
+  }
+
   render() {
-    // console.log(this.props.users);
     return (
       <div className="App">
+        <UserNavBar />
         <Switch>
           <Route path='/' exact component={this.handleLogin} />
           <Route path='/home' exact component={this.handleHome} />
@@ -46,4 +49,4 @@ const mapStateToProps = state => {
 //   }
 // }
 
-export default connect(mapStateToProps, { fetchLogin, fetchPosts })(withRouter(App))
+export default connect(mapStateToProps, { fetchLogin, fetchPosts, getProfileFetch })(withRouter(App))

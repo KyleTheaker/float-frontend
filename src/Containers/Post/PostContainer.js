@@ -6,18 +6,18 @@ class PostContainer extends Component {
 
     renderPosts = () => {
         if (this.props.posts[0]){
-            console.log(this.props.posts[0].post.data)
             return this.props.posts[0].post.data.map(post => <Post key={post.id} post={post.attributes}/>)
         } else {
-            console.log(this.props.posts)
+            console.log('No Posts Yet')
         }
     }
 
     render() {
+        // console.log(window.history)
         return (
             <div>
                 Post Timeline
-                <div>
+                <div className='border border-light'>
                     {this.renderPosts()}
                 </div>
             </div>

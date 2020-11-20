@@ -15,27 +15,23 @@ class LoginForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
         this.props.fetchLogin(this.state)
-        this.setState({
-            username: '',
-            password: ''
-        })
+        this.setState({ username: '', password: '' })
     }
 
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div className='form-group'>
                         <label htmlFor='username'>Username</label>
-                        <input type='text' name='username' onChange={this.handleChange} value={this.state.username} />
+                        <input type='text' name='username' className='form-control' onChange={this.handleChange} value={this.state.username} />
                     </div>
-                    <div>
+                    <div className='form-group'>
                         <label htmlFor='password'>Password</label>
-                        <input type='password' name='password' onChange={this.handleChange} value={this.state.password} />
+                        <input type='password' name='password' className='form-control' onChange={this.handleChange} value={this.state.password} />
                     </div>
-                    <input type='submit'/>
+                    <input type='submit' className='btn btn-primary' value='Login'/>
                 </form>
             </div>
         )
