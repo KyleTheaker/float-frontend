@@ -8,3 +8,30 @@ export const fetchPosts = () => {
         })
     }
 }
+
+export const createPost = (info) => {
+    return (dispatch) => {
+        const token = localStorage.token
+        if (token) {
+            return fetch('http://localhost:3001/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    text: info.text,
+                    user_id: info.user_id
+                })
+            })
+            .then(resp => { return resp.json() })
+            .then(data => {
+                console.log(data)
+                // let user = data.user
+                // dispatch({ type: 'LOGIN_USER', user })
+                // localStorage.setItem('token', data.token)
+            })
+        }
+    }
+} 

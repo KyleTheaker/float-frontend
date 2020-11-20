@@ -7,7 +7,6 @@ export default function loginReducer(state = initialState, action) {
         case 'LOGIN_USER':
             return {...state, currentUser: action.user}
         default:
-            console.log('default login action')
             return state
     }
 }

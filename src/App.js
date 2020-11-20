@@ -10,13 +10,15 @@ import { getProfileFetch } from './Actions/loginActions'
 //Other imports, nothing too complicated here
 import LoginContainer from './Containers/Login/LoginContainer'
 import HomeContainer from './Containers/User/HomeContainer'
-import UserNavBar from './Components/User/UserNavBar'
+import UserContainer from './Containers/User/UserContainer'
+// import UserNavBar from './Components/User/UserNavBar'
 
 class App extends Component {
 
   //render components
   handleLogin = () => <LoginContainer fetchLogin={this.props.fetchLogin} />
   handleHome = () => <HomeContainer fetchPosts={this.props.fetchPosts} posts={this.props.posts} />
+  handleUser = () => <UserContainer user={this.props.login} />
 
   componentDidMount() {
     this.props.getProfileFetch()
@@ -25,10 +27,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <UserNavBar />
         <Switch>
           <Route path='/' exact component={this.handleLogin} />
           <Route path='/home' exact component={this.handleHome} />
+          <Route path='/profile' exact component={this.handleUser} />
         </Switch>
       </div>
     )
@@ -36,9 +38,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
-    users: state.users,
+    login: state.login.currentUser,
     posts: state.posts
   }
 }
