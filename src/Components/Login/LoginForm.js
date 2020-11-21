@@ -22,7 +22,7 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className='text-white'>
                 <form onSubmit={this.handleSubmit}>
                     <div className='form-group'>
                         <label htmlFor='username'>Username</label>

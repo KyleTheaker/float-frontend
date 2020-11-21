@@ -6,6 +6,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import { fetchLogin } from './Actions/loginActions'
 import { fetchPosts } from './Actions/postActions'
 import { getProfileFetch } from './Actions/loginActions'
+import { createPost } from './Actions/postActions'
 
 //Other imports, nothing too complicated here
 import LoginContainer from './Containers/Login/LoginContainer'
@@ -17,7 +18,7 @@ class App extends Component {
 
   //render components
   handleLogin = () => <LoginContainer fetchLogin={this.props.fetchLogin} />
-  handleHome = () => <HomeContainer fetchPosts={this.props.fetchPosts} posts={this.props.posts} />
+  handleHome = () => <HomeContainer fetchPosts={this.props.fetchPosts} createPost={this.props.createPost} posts={this.props.posts} user={this.props.login}/>
   handleUser = () => <UserContainer user={this.props.login} />
 
   componentDidMount() {
@@ -50,4 +51,4 @@ const mapStateToProps = state => {
 //   }
 // }
 
-export default connect(mapStateToProps, { fetchLogin, fetchPosts, getProfileFetch })(withRouter(App))
+export default connect(mapStateToProps, { fetchLogin, fetchPosts, getProfileFetch, createPost })(withRouter(App))

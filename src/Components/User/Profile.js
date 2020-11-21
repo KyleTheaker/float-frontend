@@ -4,7 +4,7 @@ import UserPost from './UserPost'
 class Profile extends Component {
 
     renderUserPosts = () => {
-        return this.props.user.data.attributes.posts.map(post => <UserPost key={post.id} post={post} />)
+        return this.props.user.data.attributes.posts.map(post => <UserPost key={post.id} post={post} user={this.props.user.data}/>)
     }
 
     render() {

@@ -10,6 +10,7 @@ export const fetchPosts = () => {
 }
 
 export const createPost = (info) => {
+    console.log(info)
     return (dispatch) => {
         const token = localStorage.token
         if (token) {
