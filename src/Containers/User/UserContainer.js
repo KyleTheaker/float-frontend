@@ -14,7 +14,7 @@ class UserContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className='text-white'>
                 User Container 
                 {this.renderProfile()}
             </div>

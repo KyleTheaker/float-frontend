@@ -11,7 +11,7 @@ class HomeContainer extends Component {
 
     render() {
         return (
-            <div className='container'>
+            <div className='container text-white'>
                 Home Page
                 <div className='row'>
                     <div className='col-sm'>

@@ -27,7 +27,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{ backgroundColor: '#232324'}}>
         <Switch>
           <Route path='/' exact component={this.handleLogin} />
           <Route path='/home' exact component={this.handleHome} />

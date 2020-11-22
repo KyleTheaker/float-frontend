@@ -18,7 +18,7 @@ class Profile extends Component {
                         <p>{this.props.user.data.attributes.age}</p>
                     </div>
                     <div className='col-md'>
-                        <div className='border border-light'>
+                        <div className='border border-dark'>
                             {this.renderUserPosts()}
                         </div>
                     </div>

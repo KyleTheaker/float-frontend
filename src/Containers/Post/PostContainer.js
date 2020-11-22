@@ -13,11 +13,10 @@ class PostContainer extends Component {
     }
 
     render() {
-        // console.log(window.history)
         return (
             <div>
                 Post Timeline
-                <div className='border border-light'>
+                <div className='border border-dark'>
                     {this.renderPosts()}
                 </div>
             </div>
