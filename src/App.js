@@ -9,6 +9,7 @@ import { getProfileFetch } from './Actions/loginActions'
 
 //Other imports, nothing too complicated here
 import LoginContainer from './Containers/Login/LoginContainer'
+import SignUpContainer from './Containers/Signup/SignUpContainer'
 import HomeContainer from './Containers/User/HomeContainer'
 import UserContainer from './Containers/User/UserContainer'
 // import UserNavBar from './Components/User/UserNavBar'
@@ -19,6 +20,7 @@ class App extends Component {
   handleLogin = () => <LoginContainer history={this.props.history} fetchLogin={this.props.fetchLogin} />
   handleHome = () => <HomeContainer history={this.props.history} user={this.props.login}/>
   handleUser = () => <UserContainer user={this.props.login} />
+  handleSignUp = () => <SignUpContainer history={this.props.history} />
 
   componentDidMount() {
     this.props.getProfileFetch()
@@ -35,6 +37,7 @@ class App extends Component {
       <div className="App" style={{ backgroundColor: '#232324'}}>
         <Switch>
           <Route path='/' exact component={this.handleLogin} />
+          <Route path='/signup' exact component={this.handleSignUp} />
           <Route path='/home' exact component={this.handleHome} />
           <Route path='/profile' exact component={this.handleUser} />
         </Switch>
