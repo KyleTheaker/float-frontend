@@ -19,7 +19,7 @@ export default class LoginContainer extends Component {
                             <h1 className='display-4'>Welcome!</h1>
                             <p className='lead'>If you have an account, login below</p>
                         </div>
-                        <LoginForm fetchLogin={this.props.fetchLogin}/>
+                        <LoginForm history={this.props.history} fetchLogin={this.props.fetchLogin}/>
                     </div>
                 </div>
             </div>

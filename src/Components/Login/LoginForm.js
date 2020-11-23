@@ -16,7 +16,7 @@ class LoginForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
         this.props.fetchLogin(this.state)
-        // this.props.history.push('/home')
+        this.props.history.push('/home')
         this.setState({ username: '', password: '' })
     }
 

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { createPost } from '../../Actions/postActions'
 
 class PostForm extends Component {
 
@@ -29,9 +31,9 @@ class PostForm extends Component {
         })
     }
 
-    handleSubmit = async (e) => {
+    handleSubmit = (e) => {
         e.preventDefault()
-        await this.props.createPost(this.state)
+        this.props.createPost(this.state)
         this.setState({ text: ''})
     }
 
@@ -44,4 +46,4 @@ class PostForm extends Component {
     }
 }
 
-export default PostForm
+export default connect(null, { createPost })(PostForm)

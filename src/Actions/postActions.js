@@ -10,7 +10,6 @@ export const fetchPosts = () => {
 }
 
 export const createPost = (info) => {
-    console.log(info)
     return (dispatch) => {
         const token = localStorage.token
         if (token) {
@@ -30,7 +29,7 @@ export const createPost = (info) => {
             .then(data => {
                 console.log(data)
                 // let user = data.user
-                // dispatch({ type: 'LOGIN_USER', user })
+                dispatch({ type: 'ADD_POST' })
                 // localStorage.setItem('token', data.token)
             })
         }

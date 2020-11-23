@@ -4,9 +4,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { fetchLogin } from './Actions/loginActions'
-import { fetchPosts } from './Actions/postActions'
 import { getProfileFetch } from './Actions/loginActions'
-import { createPost } from './Actions/postActions'
+
 
 //Other imports, nothing too complicated here
 import LoginContainer from './Containers/Login/LoginContainer'
@@ -17,12 +16,18 @@ import UserContainer from './Containers/User/UserContainer'
 class App extends Component {
 
   //render components
-  handleLogin = () => <LoginContainer fetchLogin={this.props.fetchLogin} />
-  handleHome = () => <HomeContainer fetchPosts={this.props.fetchPosts} createPost={this.props.createPost} posts={this.props.posts} user={this.props.login}/>
+  handleLogin = () => <LoginContainer history={this.props.history} fetchLogin={this.props.fetchLogin} />
+  handleHome = () => <HomeContainer history={this.props.history} user={this.props.login}/>
   handleUser = () => <UserContainer user={this.props.login} />
 
   componentDidMount() {
     this.props.getProfileFetch()
+  }
+
+  componentDidUpdate() {
+    if (this.props.location.pathname === '/' && localStorage.token !== undefined) {
+      this.props.history.push('/home')
+    }
   }
 
   render() {
@@ -40,15 +45,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    login: state.login.currentUser,
-    posts: state.posts
+    login: state.login.currentUser
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchLogin: () => dispatch(fetchLogin())
-//   }
-// }
-
-export default connect(mapStateToProps, { fetchLogin, fetchPosts, getProfileFetch, createPost })(withRouter(App))
+export default connect(mapStateToProps, { fetchLogin, getProfileFetch })(withRouter(App))

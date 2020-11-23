@@ -24,15 +24,3 @@ class UserContainer extends Component {
 }
 
 export default connect()(UserContainer)
-
-{/* <div className='container'>
-    User Page
-    <div className='row'>
-        <div className='col-sm'>
-            <h1>Menu</h1>
-        </div>
-        <div className='col-md-8'>
-            {this.renderProfile()}
-        </div>
-    </div>
-</div> */}

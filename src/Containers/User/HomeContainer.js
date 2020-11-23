@@ -5,8 +5,8 @@ import PostContainer from '../Post/PostContainer'
 
 class HomeContainer extends Component {
 
-    componentDidMount() {
-        this.props.fetchPosts()
+    handleProfile = () => {
+        this.props.history.push('/profile')
     }
 
     render() {
@@ -17,11 +17,17 @@ class HomeContainer extends Component {
                     <div className='col-sm'>
                         <h1>Menu</h1>
                         <div>
-                            <PostForm createPost={this.props.createPost} user={this.props.user} />
+                            <PostForm user={this.props.user} />
+                        </div>
+                        <br/>
+                        <div className='row'>
+                            <div className='col-sm'>
+                                <button onClick={() => this.handleProfile()} type='button' className='btn btn-secondary'>Profile</button>
+                            </div>
                         </div>
                     </div>
                     <div className='col-md-8'>
-                        <PostContainer posts={this.props.posts} />
+                        <PostContainer />
                     </div>
                 </div>
             </div>

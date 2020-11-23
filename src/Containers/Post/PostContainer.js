@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchPosts } from '../../Actions/postActions'
 import Post from '../../Components/Post/Post'
 
 class PostContainer extends Component {
 
+    componentDidMount() {
+        this.props.fetchPosts()
+    }
+
     renderPosts = () => {
         if (this.props.posts[0]){
-            return this.props.posts[0].post.data.map(post => <Post key={post.id} post={post.attributes}/>)
+            return this.props.posts[0].post.data.reverse().map(post => <Post key={post.id} post={post.attributes} user={this.props.user}/>)
         } else {
             console.log('No Posts Yet')
         }
@@ -24,4 +29,11 @@ class PostContainer extends Component {
     }
 }
 
-export default connect()(PostContainer)
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+        posts: state.posts
+    }
+}
+
+export default connect(mapStateToProps, { fetchPosts })(PostContainer)
