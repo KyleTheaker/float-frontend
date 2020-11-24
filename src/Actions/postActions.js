@@ -22,6 +22,7 @@ export const createPost = (info) => {
                 },
                 body: JSON.stringify({
                     text: info.text,
+                    image: info.image,
                     user_id: info.user_id
                 })
             })

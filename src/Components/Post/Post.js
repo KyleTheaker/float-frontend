@@ -17,11 +17,18 @@ class Post extends Component {
     render() {
         return (
             <div className='card shadow p-3 mb-5 bg-transparent rounded'>
-                <div className='card-body'>
-                    <p>{this.props.post.text}</p>
-                    <p>{this.state.likes} <span onClick={() => this.handleLikes(this.props.post)}>♡</span></p>
-                    <footer className='blockquote-footer'><cite>{this.props.post.user.name}</cite></footer>
-                </div>
+                {/* <div className='row no-gutters'> */}
+                    {/* <div className='col-md-4'> */}
+                        <img src={this.props.post.image} class='card-img rounded' alt=''/>
+                    {/* </div> */}
+                    {/* <div className='col-md-8'> */}
+                        <div className='card-body'>
+                            <p>{this.props.post.text}</p>
+                            <p>{this.state.likes} <span onClick={() => this.handleLikes(this.props.post)}>♡</span></p>
+                            <footer className='blockquote-footer'><cite>{this.props.post.user.name}</cite></footer>
+                        </div>
+                    {/* </div> */}
+                {/* </div> */}
             </div>
         )
     }
