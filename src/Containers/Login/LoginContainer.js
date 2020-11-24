@@ -16,6 +16,7 @@ export default class LoginContainer extends Component {
                 backgroundSize: 'cover',
                 height: '938px'
                 }}>
+                <br />
                 <div className='row'>
                     <div className='col-md-8'></div>
                     <div className='col-sm-3'>
