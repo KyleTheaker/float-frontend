@@ -6,7 +6,7 @@ class UserContainer extends Component {
 
     renderProfile = () => {
         if (this.props.user.data !== undefined) {
-            return <Profile user={this.props.user} />
+            return <Profile history={this.props.history} user={this.props.user} />
         } else {
             console.log('no user yet')
         }
@@ -14,7 +14,7 @@ class UserContainer extends Component {
 
     render() {
         return (
-            <div className='text-white'>
+            <div className='container text-white'>
                 User Container 
                 {this.renderProfile()}
             </div>

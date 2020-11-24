@@ -19,7 +19,7 @@ class Post extends Component {
             <div className='card shadow p-3 mb-5 bg-transparent rounded'>
                 {/* <div className='row no-gutters'> */}
                     {/* <div className='col-md-4'> */}
-                        <img src={this.props.post.image} class='card-img rounded' alt=''/>
+                        <img src={this.props.post.image} className='card-img rounded' alt=''/>
                     {/* </div> */}
                     {/* <div className='col-md-8'> */}
                         <div className='card-body'>
