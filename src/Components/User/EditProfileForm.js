@@ -7,10 +7,10 @@ import FloatLoginPage from '../../Images/Float-LoginPage.png'
 class EditProfileForm extends Component {
 
     state = {
-        name: '',
-        bio: '',
-        profile_pic: '',
-        header_image: '',
+        name: this.props.user.data.attributes.name,
+        bio: this.props.user.data.attributes.bio,
+        profile_pic: this.props.user.data.attributes.profile_pic,
+        header_image: this.props.user.data.attributes.header_image,
         user_id: ''
     }
 

@@ -50,6 +50,8 @@ class Profile extends Component {
                         <br/>
                         <br/>
                         <img className='rounded-circle ml-4' src={this.props.user.data.attributes.profile_pic} alt='' style={{
+                            width: 'auto', 
+                            height: '199px',
                             border: '5px solid #232324'
                         }}/>
                     </div>
@@ -57,23 +59,18 @@ class Profile extends Component {
                 <div className='container border border-dark' style={{ padding: '10px'}}>
                 <div className='row'>
                     <div className='col-md' style={{ padding: '35px'}}>
-                        <div className='row'>
+                        <div className='row' style={{ position: 'sticky', top: '0'}}>
                             <div className='col-md'>
-                                <div style={{ position: 'fixed' }}>
-                                    <h1>{this.props.user.data.attributes.name}</h1>
-                                    <p className='text-muted'>@{this.props.user.data.attributes.username}</p>
-                                    <h5>{this.props.user.data.attributes.bio}</h5>
-                                    <p>{this.props.user.data.attributes.age}</p>
-                                    <button className='btn btn-primary' onClick={this.changeRoute}>Edit Profile</button>
-                                    
-                                </div>
+                                <h1>{this.props.user.data.attributes.name}</h1>
+                                <p className='text-muted'>@{this.props.user.data.attributes.username}</p>
+                                <h5>{this.props.user.data.attributes.bio}</h5>
+                                <p>{this.props.user.data.attributes.age}</p>
+                                <button className='btn btn-primary' onClick={this.changeRoute}>Edit Profile</button>
                             </div>
                             <div className='col-md'>
-                                <div style={{ position: 'fixed' }}>
-                                    <h1 className='font-weight-lighter'>Posts: {this.props.user.data.attributes.posts.length}</h1>
-                                    <h4 className='font-weight-lighter'>Comments: {this.props.user.data.attributes.comments.length}</h4>
-                                    <h4 className='font-weight-lighter'>Likes: {this.props.user.data.attributes.likes.length}</h4>
-                                </div>
+                                <h1 className='font-weight-lighter'>Posts: {this.props.user.data.attributes.posts.length}</h1>
+                                <h4 className='font-weight-lighter'>Comments: {this.props.user.data.attributes.comments.length}</h4>
+                                <h4 className='font-weight-lighter'>Likes: {this.props.user.data.attributes.likes.length}</h4>
                             </div>
                         </div>
                     </div>
