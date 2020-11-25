@@ -16,7 +16,7 @@ class UserPost extends Component {
                     <p>{this.props.post.text}</p>
                     <footer className='blockquote-footer'><cite>{this.props.user.attributes.name}</cite></footer>
                 </div>
-                <button onClick={() => this.handleDelete(this.props.post)}>delete</button>
+                <button type='button' className='btn btn-outline-danger btn-sm' onClick={() => this.handleDelete(this.props.post)}>delete</button>
             </div>
         )
     }
