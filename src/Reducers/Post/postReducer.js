@@ -19,7 +19,6 @@ export default function postReducer(state = initialState, action) {
         case 'ADD_POST':
             return {
                 ...state,
-                posts: [...state.posts.post.data, action.data],
                 requesting: false
             }
         case 'DELETE_POST':
