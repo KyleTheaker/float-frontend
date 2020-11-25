@@ -10,14 +10,15 @@ class PostContainer extends Component {
     }
 
     renderPosts = () => {
-        if (this.props.posts[0]){
-            return this.props.posts[0].post.data.map(post => <Post key={post.id} post_id={post.id} post={post.attributes} user={this.props.user}/>).reverse()
+        if (this.props.posts.post){
+            return this.props.posts.post.data.map(post => <Post key={post.id} post_id={post.id} post={post.attributes} user={this.props.user}/>).reverse()
         } else {
             console.log('No Posts Yet')
         }
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <div className='border border-dark'>
@@ -30,7 +31,7 @@ class PostContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        posts: state.posts
+        posts: state.posts.posts
     }
 }
 

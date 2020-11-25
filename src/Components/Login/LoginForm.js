@@ -15,9 +15,10 @@ class LoginForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
+        // console.log(this.props)
         this.props.fetchLogin(this.state)
-        this.props.history.push('/home')
         this.setState({ username: '', password: '' })
+    
     }
 
     render() {
@@ -34,6 +35,7 @@ class LoginForm extends Component {
                     </div>
                     <input type='submit' className='btn btn-primary' value='Login'/>
                 </form>
+                {this.props.error ? <p style={{ color: 'red' }}>Invalid username or password</p> : null}
             </div>
         )
     } 

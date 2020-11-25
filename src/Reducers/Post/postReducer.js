@@ -1,11 +1,33 @@
-export default function postReducer(state = [], action) {
+const initialState = {
+    posts: [],
+    requesting: false
+}
+
+export default function postReducer(state = initialState, action) {
     switch (action.type) {
         case 'START_POSTS_REQUST':
-            return [...state]
+            return { 
+                ...state,
+                requesting: true
+            }
         case 'GET_POSTS':
-            return [...state, action.data]
+            return {
+                ...state, 
+                posts: action.data,
+                requesting: false
+            }
         case 'ADD_POST':
-            return [...state, action.data]
+            return {
+                ...state,
+                posts: [...state.posts.post.data, action.data],
+                requesting: false
+            }
+        case 'DELETE_POST':
+            let idx = state.posts.findIndex(post => post.id === action.post_id)
+            return {
+                posts: [...state.posts.slice(0, idx), ...state.posts.slice(idx + 1)],
+                requesting: false
+            }
         default:
             return state
     }

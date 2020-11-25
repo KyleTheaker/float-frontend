@@ -1,5 +1,6 @@
 export const fetchLogin = (info) => {
     return (dispatch) => {
+        dispatch({ type: "START_LOG_REQUEST" })
         fetch('http://localhost:3001/login', {
             method: 'POST',
             headers: {
@@ -12,9 +13,14 @@ export const fetchLogin = (info) => {
         })
         .then(resp => { return resp.json() })
         .then(data => {
-            let user = data.user
-            dispatch({ type: 'LOGIN_USER', user })
-            localStorage.setItem('token', data.token)
+            if (data.message === 'Incorrect Username or Password') {
+                localStorage.removeItem("token")
+                dispatch({ type: 'ERROR_MESSAGE' })
+            } else {
+                localStorage.setItem('token', data.token)
+                let user = data.user
+                dispatch({ type: 'LOGIN_USER', user })
+            }
         })
     }
 }

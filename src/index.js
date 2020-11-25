@@ -5,12 +5,22 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { applyMiddleware, combineReducers, createStore, compose } from 'redux'
 import thunk from 'redux-thunk'
 
 import loginReducer from './Reducers/Login/loginReducer'
 import logoutReducer from './Reducers/Logout/logoutReducer'
 import postReducer from './Reducers/Post/postReducer'
+
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    }) : compose;
+    
+const enhancer = composeEnhancers(
+  applyMiddleware(thunk)
+);
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -18,12 +28,15 @@ const rootReducer = combineReducers({
   posts: postReducer
 })
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(
+  rootReducer, 
+  enhancer
+)
 
 ReactDOM.render(
   <Provider store={store} >
     <BrowserRouter>
-      <App />
+      <App store={store}/>
     </BrowserRouter>
   </Provider>, document.getElementById('root')
 )

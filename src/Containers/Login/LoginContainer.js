@@ -24,7 +24,7 @@ export default class LoginContainer extends Component {
                             <h1 className='display-6'>Login Below!</h1>
                             <p className='lead'>If you don't yet have an account <button onClick={this.handleClick} className='btn btn-primary'>Sign Up</button></p>
                         </div>
-                        <LoginForm history={this.props.history} fetchLogin={this.props.fetchLogin}/>
+                        <LoginForm error={this.props.error} history={this.props.history} fetchLogin={this.props.fetchLogin}/>
                     </div>
                 </div>
             </div>

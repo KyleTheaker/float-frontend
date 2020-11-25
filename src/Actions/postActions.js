@@ -11,6 +11,7 @@ export const fetchPosts = () => {
 
 export const createPost = (info) => {
     return (dispatch) => {
+        dispatch({ type: 'START_POSTS_REQUST' })
         const token = localStorage.token
         if (token) {
             return fetch('http://localhost:3001/posts', {
@@ -32,4 +33,19 @@ export const createPost = (info) => {
             })
         }
     }
-} 
+}
+
+export const deletePost = (info) => {
+    return (dispatch) => {
+        dispatch({ type: 'START_POSTS_REQUST' })
+        fetch(`http://localhost:3001/posts/${info.id}`, {
+            method: 'DELETE'
+        })
+        .then(resp => { return resp.json() })
+        .then(data => {
+            console.log(data)
+            let post_id = info.id
+            dispatch({ type: 'DELETE_POST', post_id})
+        })
+    }
+}

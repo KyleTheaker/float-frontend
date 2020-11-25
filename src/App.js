@@ -18,7 +18,7 @@ import UserContainer from './Containers/User/UserContainer'
 class App extends Component {
 
   //render components
-  handleLogin = () => <LoginContainer history={this.props.history} fetchLogin={this.props.fetchLogin} />
+  handleLogin = () => <LoginContainer error={this.props.login_error} history={this.props.history} fetchLogin={this.props.fetchLogin} />
   handleHome = () => <HomeContainer history={this.props.history} user={this.props.login}/>
   handleUser = () => <UserContainer history={this.props.history} user={this.props.login} />
   handleSignUp = () => <SignUpContainer history={this.props.history} />
@@ -51,7 +51,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    login: state.login.currentUser
+    login: state.login.currentUser,
+    login_error: state.login.error
   }
 }
 
