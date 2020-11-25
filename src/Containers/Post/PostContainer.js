@@ -11,7 +11,7 @@ class PostContainer extends Component {
 
     renderPosts = () => {
         if (this.props.posts[0]){
-            return this.props.posts[0].post.data.map(post => <Post key={post.id} post={post.attributes} user={this.props.user}/>).reverse()
+            return this.props.posts[0].post.data.map(post => <Post key={post.id} post_id={post.id} post={post.attributes} user={this.props.user}/>).reverse()
         } else {
             console.log('No Posts Yet')
         }
@@ -20,7 +20,6 @@ class PostContainer extends Component {
     render() {
         return (
             <div>
-                Post Timeline
                 <div className='border border-dark'>
                     {this.renderPosts()}
                 </div>
@@ -31,7 +30,6 @@ class PostContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user,
         posts: state.posts
     }
 }

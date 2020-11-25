@@ -49,11 +49,13 @@ class EditProfileForm extends Component {
                 <div className='row'>
                     <div className='col-md-8'></div>
                     <div className='col-sm-3'>
+                        <br/>
+                        <br/>
                         <div className='card text-black'>
-                            <h5 className='card-header'>
+                            <div className='card-header'>
                                 <h1 className='display-6'>Profile Edit!</h1>
                                 <p className='lead'>Made a mistake? <button onClick={this.goBack} className='btn btn-primary'>Go Back!</button></p>
-                            </h5>
+                            </div>
                             <div className='card-body'>
                                 <form onSubmit={this.handleSubmit}>
                                     <div className='form-group'>

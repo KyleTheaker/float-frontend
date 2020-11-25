@@ -29,9 +29,7 @@ export const createPost = (info) => {
             .then(resp => { return resp.json() })
             .then(data => {
                 console.log(data)
-                // let user = data.user
                 dispatch({ type: 'ADD_POST' })
-                // localStorage.setItem('token', data.token)
             })
         }
     }

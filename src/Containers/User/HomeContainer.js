@@ -15,19 +15,21 @@ class HomeContainer extends Component {
                 Home Page
                 <div className='row'>
                     <div className='col-sm'>
-                        <h1>Menu</h1>
-                        <div>
-                            <PostForm user={this.props.user} />
-                        </div>
-                        <br/>
-                        <div className='row'>
-                            <div className='col-sm'>
-                                <button onClick={() => this.handleProfile()} type='button' className='btn btn-secondary'>Profile</button>
+                        <div style={{ position: 'fixed' }}>
+                            <h1>Menu</h1>
+                            <div>
+                                <PostForm user={this.props.user} />
+                            </div>
+                            <br/>
+                            <div className='row'>
+                                <div className='col-sm'>
+                                    <button onClick={() => this.handleProfile()} type='button' className='btn btn-secondary'>Profile</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className='col-md-8'>
-                        <PostContainer />
+                        <PostContainer user={this.props.user}/>
                     </div>
                 </div>
             </div>
