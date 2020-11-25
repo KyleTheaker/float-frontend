@@ -22,11 +22,13 @@ export default function postReducer(state = initialState, action) {
                 requesting: false
             }
         case 'DELETE_POST':
-            let idx = state.posts.findIndex(post => post.id === action.post_id)
-            return {
-                posts: [...state.posts.slice(0, idx), ...state.posts.slice(idx + 1)],
-                requesting: false
-            }
+            if (state.posts.findIndex) {
+                let idx = state.posts.findIndex(post => post.id === action.post_id)
+                return {
+                    posts: [...state.posts.slice(0, idx), ...state.posts.slice(idx + 1)],
+                    requesting: false
+                }
+            }   
         default:
             return state
     }
