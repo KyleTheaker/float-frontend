@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createPost } from '../../Actions/postActions'
+import { fetchPosts } from '../../Actions/postActions'
 
 class PostForm extends Component {
 
@@ -51,4 +52,4 @@ class PostForm extends Component {
     }
 }
 
-export default connect(null, { createPost })(PostForm)
+export default connect(null, { createPost, fetchPosts })(PostForm)

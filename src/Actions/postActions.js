@@ -28,8 +28,7 @@ export const createPost = (info) => {
             })
             .then(resp => { return resp.json() })
             .then(data => {
-                console.log(data)
-                dispatch({ type: 'ADD_POST' })
+                dispatch({ type: 'ADD_POST', data })
             })
         }
     }

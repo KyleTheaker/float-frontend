@@ -5,7 +5,7 @@ export default function postReducer(state = [], action) {
         case 'GET_POSTS':
             return [...state, action.data]
         case 'ADD_POST':
-            return [...state]
+            return [...state, action.data]
         default:
             return state
     }
