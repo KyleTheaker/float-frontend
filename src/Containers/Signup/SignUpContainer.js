@@ -16,11 +16,6 @@ export default class SignUpContainer extends Component {
                 <div className='row'>
                     <div className='col-md-8'></div>
                     <div className='col-sm-3'>
-                        {/* <div className='jumbotron'>
-                            <h1 className='display-6'>Welcome!</h1>
-                            <p className='lead'>Sign Up Below!</p>
-                            <p className='lead'>Sign Up Below!</p>
-                        </div> */}
                         <SignUpForm history={this.props.history} />
                     </div>
                 </div>
