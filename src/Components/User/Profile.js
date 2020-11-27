@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import UserPost from './UserPost'
 
 class Profile extends Component {
-
-    renderUserPosts = () => {
-        return this.props.user.data.attributes.posts.map(post => <UserPost key={post.id} post={post} user={this.props.user.data}/>).reverse()
-    }
 
     changeRoute = () => {
         this.props.history.push('/profile/edit')
@@ -50,8 +47,9 @@ class Profile extends Component {
                         <br/>
                         <br/>
                         <img className='rounded-circle ml-4' src={this.props.user.data.attributes.profile_pic} alt='' style={{
-                            width: 'auto', 
-                            height: '199px',
+                            width: '200px', 
+                            height: '200px',
+                            borderRadius: '50%',
                             border: '5px solid #232324'
                         }}/>
                     </div>
@@ -76,7 +74,7 @@ class Profile extends Component {
                     </div>
                     <div className='col-md'>
                         <div className='border border-dark'>
-                            {this.renderUserPosts()}
+                            {this.props.user.data.attributes.posts.map(post => <UserPost key={post.id} post={post} user={this.props.user.data}/>).reverse()}
                         </div>
                     </div>
                 </div>
@@ -86,4 +84,10 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+const mapStateToProps = state => {
+    return {
+      user: state.login.currentUser
+    }
+}
+
+export default connect(mapStateToProps)(Profile)

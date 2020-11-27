@@ -5,24 +5,6 @@ import { fetchPosts } from '../../Actions/postActions'
 
 class PostForm extends Component {
 
-    renderForm = () => {
-        if (this.props.user.data !== undefined) {
-            return <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-            <div className='form-group'>
-                <label htmlFor='text'>Float</label>
-                <textarea className='form-control' name='text' onChange={this.handleChange} value={this.state.text} />
-            </div>
-            <div className='form-group'>
-                <label htmlFor='image'>Add an image:</label>
-                <input type='text' className='form-control' name='image' onChange={this.handleChange} value={this.state.image}/>
-            </div>
-            <input type='submit' className='btn btn-primary' value='Float' />
-        </form>
-        } else {
-            console.log('cannot post yet')
-        }
-    }
-
     state = {
         text: '',
         image: '',
@@ -46,10 +28,26 @@ class PostForm extends Component {
     render() {
         return (
             <div>
-                {this.renderForm()}
+                <form onSubmit={this.handleSubmit} encType="multipart/form-data">
+                    <div className='form-group'>
+                        <label htmlFor='text'>Float</label>
+                        <textarea className='form-control' name='text' onChange={this.handleChange} value={this.state.text} />
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor='image'>Add an image:</label>
+                        <input type='text' className='form-control' name='image' onChange={this.handleChange} value={this.state.image}/>
+                    </div>
+                    <input type='submit' className='btn btn-primary' value='Float' />
+                </form>
             </div>
         )
     }
 }
 
-export default connect(null, { createPost, fetchPosts })(PostForm)
+const mapStateToProps = state => {
+    return {
+      user: state.login.currentUser
+    }
+}
+
+export default connect(mapStateToProps, { createPost, fetchPosts })(PostForm)

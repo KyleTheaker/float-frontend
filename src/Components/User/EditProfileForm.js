@@ -85,4 +85,11 @@ class EditProfileForm extends Component {
     }
 }
 
-export default connect(null, { fetchUserEdit })(EditProfileForm)
+const mapStateToProps = state => {
+    return {
+      user: state.login.currentUser
+    }
+}
+
+
+export default connect(mapStateToProps, { fetchUserEdit })(EditProfileForm)

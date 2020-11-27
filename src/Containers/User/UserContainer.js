@@ -3,23 +3,20 @@ import { connect } from 'react-redux'
 import Profile from '../../Components/User/Profile'
 
 class UserContainer extends Component {
-
-    renderProfile = () => {
-        if (this.props.user.data !== undefined) {
-            return <Profile history={this.props.history} user={this.props.user} />
-        } else {
-            console.log('no user yet')
-        }
-    }
-
     render() {
         return (
             <div className='container text-white'>
-                {this.renderProfile()}
+                {this.props.user.data ? <Profile history={this.props.history} /> : null}
             </div>
     
         )
     }
 }
 
-export default connect()(UserContainer)
+const mapStateToProps = state => {
+    return {
+      user: state.login.currentUser
+    }
+}
+
+export default connect(mapStateToProps)(UserContainer)

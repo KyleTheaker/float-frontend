@@ -9,20 +9,17 @@ class PostContainer extends Component {
         this.props.fetchPosts()
     }
 
-    renderPosts = () => {
-        if (this.props.posts.post){
-            return this.props.posts.post.data.map(post => <Post key={post.id} post_id={post.id} post={post.attributes} user={this.props.user}/>).reverse()
-        } else {
-            console.log('No Posts Yet')
-        }
-    }
-
     render() {
         console.log(this.props)
         return (
             <div>
                 <div className='border border-dark'>
-                    {this.renderPosts()}
+                    {
+                        this.props.posts.post ? 
+                        this.props.posts.post.data.map(post => <Post key={post.id} post_id={post.id} post={post.attributes} user={this.props.user}/>).reverse()
+                         : 
+                        null
+                    }
                 </div>
             </div>
         )
@@ -31,6 +28,7 @@ class PostContainer extends Component {
 
 const mapStateToProps = state => {
     return {
+        user: state.login.currentUser,
         posts: state.posts.posts
     }
 }

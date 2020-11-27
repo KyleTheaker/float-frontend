@@ -20,9 +20,9 @@ class App extends Component {
   //render components
   handleLogin = () => <LoginContainer error={this.props.login_error} history={this.props.history} fetchLogin={this.props.fetchLogin} />
   handleHome = () => <HomeContainer history={this.props.history} user={this.props.login}/>
-  handleUser = () => <UserContainer history={this.props.history} user={this.props.login} />
+  handleUser = () => <UserContainer history={this.props.history} />
   handleSignUp = () => <SignUpContainer history={this.props.history} />
-  handleEditProfileForm = () => <EditProfileForm history={this.props.history} user={this.props.login} />
+  handleEditProfileForm = () => <EditProfileForm history={this.props.history} />
 
   componentDidMount() {
     this.props.getProfileFetch()
