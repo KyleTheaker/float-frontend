@@ -10,7 +10,6 @@ class PostContainer extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <div className='border border-dark'>
