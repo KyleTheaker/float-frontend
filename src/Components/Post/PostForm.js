@@ -11,12 +11,16 @@ class PostForm extends Component {
         user_id: ''
     }
 
+    componentDidUpdate() {
+        this.props.fetchPosts()
+    }
+
     handleChange = e => {
         let { name, value } = e.target
         this.setState({
             [name]: value,
             user_id: this.props.user.data.id
-        })
+        }) 
     }
 
     handleSubmit = (e) => {
@@ -25,10 +29,17 @@ class PostForm extends Component {
         this.setState({ text: '', image: ''})
     }
 
+    // loadFile = (e) => {
+    //   this.setState({
+    //       ...this.state,
+    //       image: URL.createObjectURL(e.target.files[0])
+    //   })
+    // }
+
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit} encType="multipart/form-data">
+                <form onSubmit={this.handleSubmit} >
                     <div className='form-group'>
                         <label htmlFor='text'>Float</label>
                         <textarea className='form-control' name='text' onChange={this.handleChange} value={this.state.text} />
@@ -37,12 +48,18 @@ class PostForm extends Component {
                         <label htmlFor='image'>Add an image:</label>
                         <input type='text' className='form-control' name='image' onChange={this.handleChange} value={this.state.image}/>
                     </div>
+                    {/* <div className='form-group'>
+                        <label htmlFor="file">Upload Image</label>
+                        <input type="file"  accept="image/*" name="image" id="file" onChange={this.loadFile}/>
+                    </div> */}
                     <input type='submit' className='btn btn-primary' value='Float' />
                 </form>
             </div>
         )
     }
 }
+
+// encType="multipart/form-data"
 
 const mapStateToProps = state => {
     return {

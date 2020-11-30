@@ -8,7 +8,7 @@ class PostContainer extends Component {
     componentDidMount() {
         this.props.fetchPosts()
     }
-
+    
     render() {
         return (
             <div>

@@ -11,14 +11,14 @@ export default function postReducer(state = initialState, action) {
                 requesting: true
             }
         case 'GET_POSTS':
-            return {
-                ...state, 
+            return { 
                 posts: action.data,
                 requesting: false
             }
         case 'ADD_POST':
             return {
                 ...state,
+                posts: [...state.posts.post.data, action.data],
                 requesting: false
             }
         case 'DELETE_POST':
@@ -28,7 +28,10 @@ export default function postReducer(state = initialState, action) {
                     posts: [...state.posts.slice(0, idx), ...state.posts.slice(idx + 1)],
                     requesting: false
                 }
-            }   
+            } else {
+                return { ...state }
+            }
+        break
         default:
             return state
     }

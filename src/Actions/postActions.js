@@ -22,14 +22,17 @@ export const createPost = (info) => {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
-                    text: info.text,
-                    image: info.image,
-                    user_id: info.user_id
+                    post: {
+                        text: info.text,
+                        image: info.image,
+                        user_id: info.user_id
+                    }
                 })
             })
             .then(resp => { return resp.json() })
             .then(data => {
                 dispatch({ type: 'ADD_POST', data })
+                // dispatch({ type: 'GET_POSTS' })
             })
         }
     }
