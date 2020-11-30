@@ -36,13 +36,13 @@ class PostForm extends Component {
             this.setState({
                 ...this.state,
                 image: e.target.files[0]
+            }, () => {
+                this.handleUpload()
             })
         }
     }
 
-    handleUpload = e => {
-        e.preventDefault()
-        // console.log('hi')
+    handleUpload = () => {
         const uploadTask = storage.ref(`postImages/${this.state.image.name}`).put(this.state.image)
         uploadTask.on(
             'state_changed',
@@ -63,14 +63,6 @@ class PostForm extends Component {
         )
     }
 
-
-    // loadFile = (e) => {
-    //   this.setState({
-    //       ...this.state,
-    //       image: URL.createObjectURL(e.target.files[0])
-    //   })
-    // }
-
     render() {
         return (
             <div>
@@ -86,7 +78,6 @@ class PostForm extends Component {
                     <div className='form-group'>
                         <label htmlFor="file">Upload Image From Computer</label>
                         <input type="file" className='form-control' accept="image/*" name="image" onChange={this.handleFileChange}/>
-                        <button onClick={this.handleUpload}>Upload</button>
                     </div>
                     <input type='submit' className='btn btn-primary' value='Float' />
                 </form>
@@ -94,8 +85,6 @@ class PostForm extends Component {
         )
     }
 }
-
-// encType="multipart/form-data"
 
 const mapStateToProps = state => {
     return {
