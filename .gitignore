@@ -12,7 +12,7 @@
 /build
 
 # firebase api keys and such
-/firebase
+Firebase/
 
 # misc
 .DS_Store
