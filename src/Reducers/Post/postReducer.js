@@ -31,7 +31,6 @@ export default function postReducer(state = initialState, action) {
             } else {
                 return { ...state }
             }
-        break
         default:
             return state
     }
