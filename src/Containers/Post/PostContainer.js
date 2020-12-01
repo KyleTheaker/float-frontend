@@ -18,7 +18,7 @@ class PostContainer extends Component {
                         this.props.posts.post.data.map(post => <Post key={post.id} post_id={post.id} post={post.attributes} user={this.props.user}/>).reverse()
                          : 
                         null
-                    }
+                    } 
                 </div>
             </div>
         )
