@@ -24,6 +24,7 @@ class UserView extends Component {
 
     renderUserShow = () => {
         if (this.props.user.data !== undefined) {
+            console.log(this.props.user)
             return <div className='container text-white'>
             <div className='container' style={{ padding: '10px' }}>
                 <svg onClick={this.goHome} style={{ cursor: 'pointer' }} width="35px" height="35px" viewBox="0 0 16 16" className="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
