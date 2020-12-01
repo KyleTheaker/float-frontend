@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchUserShow } from '../../Actions/userActions'
 import UserPost from './UserPost'
+// Creadted for user show 
 
 class UserView extends Component {
 
