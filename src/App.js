@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { fetchLogin } from './Actions/loginActions'
 import { getProfileFetch } from './Actions/loginActions'
-import EditProfileForm from './Components/User/EditProfileForm'
 
+import EditProfileForm from './Components/User/EditProfileForm'
+import UserView from './Components/User/UserView'
 
 //Other imports, nothing too complicated here
 import LoginContainer from './Containers/Login/LoginContainer'
@@ -43,6 +44,7 @@ class App extends Component {
           <Route path='/home' exact component={this.handleHome} />
           <Route path='/profile' exact component={this.handleUser} />
           <Route path='/profile/edit' exact component={this.handleEditProfileForm} />
+          <Route path={`/users/:userId`} render={ routerProps => <UserView {...routerProps} history={this.props.history}/>} />
         </Switch>
       </div>
     )

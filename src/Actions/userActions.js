@@ -25,3 +25,25 @@ export const fetchUserEdit = (info) => {
         }
     }
 }
+
+export const fetchUserShow = (info) => {
+    return (dispatch) => {
+        dispatch({ type: 'START_REQUEST'})
+        const token = localStorage.token
+        if (token) {
+            return fetch(`http://localhost:3001/users/${info}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(resp => { return resp.json() })
+            .then(data => {
+                let user = data.user
+                dispatch({ type: 'GET_USER_SHOW', user })
+            })
+        }
+    }
+}
