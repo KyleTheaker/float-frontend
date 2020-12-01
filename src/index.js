@@ -11,6 +11,7 @@ import thunk from 'redux-thunk'
 import loginReducer from './Reducers/Login/loginReducer'
 import logoutReducer from './Reducers/Logout/logoutReducer'
 import postReducer from './Reducers/Post/postReducer'
+import userReducer from './Reducers/User/userReducer'
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -25,7 +26,8 @@ const enhancer = composeEnhancers(
 const rootReducer = combineReducers({
   login: loginReducer,
   logout: logoutReducer,
-  posts: postReducer
+  posts: postReducer,
+  user: userReducer
 })
 
 const store = createStore(

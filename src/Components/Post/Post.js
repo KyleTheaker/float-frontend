@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createLike } from '../../Actions/likeActions'
+import { Link } from 'react-router-dom'
 
 class Post extends Component {
 
@@ -33,7 +34,11 @@ class Post extends Component {
                 <div className='card-body'>
                     <p>{this.props.post.text}</p>
                     <p>{this.state.likes} <span onClick={() => this.handleLikes(this.props.post_id)}>♡</span></p>
-                    <footer className='blockquote-footer'><cite>{this.props.post.user.name}</cite></footer>
+                    <footer className='blockquote-footer'>
+                        <cite>
+                            <Link key={this.props.post.user.id + 'u'} to={`/users/${this.props.post.user.id}`}>{this.props.post.user.username}</Link>
+                        </cite>
+                    </footer>
                 </div>
             </div>
         )
