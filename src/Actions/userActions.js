@@ -47,3 +47,28 @@ export const fetchUserShow = (info) => {
         }
     }
 }
+
+export const fetchFollowingPost = (info) => {
+    return (dispatch) => {
+        dispatch({ type: 'START_REQUEST'})
+        const token = localStorage.token
+        if (token) {
+            return fetch('http://localhost:3001/followership', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    follower_id: info.follower_id,
+                    followee_id: info.followee_id
+                })
+            })
+            .then(resp => { return resp.json() })
+            .then(data => {
+                console.log(data)
+            })
+        }
+    }
+}

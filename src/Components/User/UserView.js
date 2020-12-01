@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchUserShow } from '../../Actions/userActions'
+import { fetchUserShow, fetchFollowingPost } from '../../Actions/userActions'
 import UserPost from './UserPost'
 
 class UserView extends Component {
@@ -8,6 +8,14 @@ class UserView extends Component {
     componentDidMount() {
         let user_id = parseInt(this.props.match.params.userId)
         this.props.fetchUserShow(user_id)
+    }
+
+    followUser = () => {
+        let info = {
+            follower_id: this.props.currentUser.data.id,
+            followee_id: parseInt(this.props.user.data.id)
+        }
+        this.props.fetchFollowingPost(info)
     }
 
     goHome = () => {
@@ -24,7 +32,6 @@ class UserView extends Component {
 
     renderUserShow = () => {
         if (this.props.user.data !== undefined) {
-            console.log(this.props.user)
             return <div className='container text-white'>
             <div className='container' style={{ padding: '10px' }}>
                 <svg onClick={this.goHome} style={{ cursor: 'pointer' }} width="35px" height="35px" viewBox="0 0 16 16" className="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +61,7 @@ class UserView extends Component {
                 <div className='col-md' style={{ padding: '35px'}}>
                     <div className='row' style={{ position: 'sticky', top: '0'}}>
                         <div className='col-md'>
-                            <h1>{this.props.user.data.attributes.name}</h1>
+                            <h1>{this.props.user.data.attributes.name} <button onClick={() => this.followUser()} className='btn btn-secondary'>Follow</button></h1>
                             <p className='text-muted'>@{this.props.user.data.attributes.username}</p>
                             <h5>{this.props.user.data.attributes.bio}</h5>
                             <p>{this.props.user.data.attributes.age}</p>
@@ -90,8 +97,9 @@ class UserView extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user.user
+        user: state.user.user,
+        currentUser: state.login.currentUser
     }
 }
 
-export default connect(mapStateToProps, { fetchUserShow })(UserView)
+export default connect(mapStateToProps, { fetchUserShow, fetchFollowingPost })(UserView)
