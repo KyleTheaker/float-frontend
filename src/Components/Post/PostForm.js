@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createPost } from '../../Actions/postActions'
 import { fetchPosts } from '../../Actions/postActions'
 
+import { Modal } from 'react-bootstrap'
 import { storage } from '../../Firebase'
 
 class PostForm extends Component {
@@ -10,7 +11,8 @@ class PostForm extends Component {
     state = {
         text: '',
         image: '',
-        user_id: ''
+        user_id: '',
+        show: false
     }
 
     componentDidUpdate() {
@@ -29,6 +31,20 @@ class PostForm extends Component {
         e.preventDefault()
         this.props.createPost(this.state)
         this.setState({ text: '', image: ''})
+    }
+
+    handleClose = () => {
+        this.setState({
+            ...this.state,
+            show: false
+        })
+    }
+
+    handleShow = () => {
+        this.setState({
+            ...this.state,
+            show: true
+        })
     }
 
     handleFileChange = e => {
@@ -66,21 +82,28 @@ class PostForm extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit} >
-                    <div className='form-group'>
-                        <label htmlFor='text'>Float</label>
-                        <textarea className='form-control' name='text' onChange={this.handleChange} value={this.state.text} />
-                    </div>
-                    <div className='form-group'>
-                        <label htmlFor='image'>Image url</label>
-                        <input type='text' className='form-control' name='image' onChange={this.handleChange} value={this.state.image}/>
-                    </div>
-                    <div className='form-group'>
-                        <label htmlFor="file">Upload Image From Computer</label>
-                        <input type="file" className='btn btn-secondary' accept="image/*" name="image" onChange={this.handleFileChange} style={{ display: 'block'}}/>
-                    </div>
-                    <input type='submit' className='btn btn-primary' value='Float' />
-                </form>
+                <button className='btn btn-primary' onClick={() => this.handleShow()}>Float</button>
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <form onSubmit={this.handleSubmit} >
+                        <Modal.Body>
+                            <div className='form-group'>
+                                <label htmlFor='text'>Float</label>
+                                <textarea className='form-control' name='text' onChange={this.handleChange} value={this.state.text} />
+                            </div>
+                            <div className='form-group'>
+                                <label htmlFor='image'>Image url</label>
+                                <input type='text' className='form-control' name='image' onChange={this.handleChange} value={this.state.image}/>
+                            </div>
+                            <div className='form-group'>
+                                <label htmlFor="file">Upload Image From Computer</label>
+                                <input type="file" className='btn btn-secondary' accept="image/*" name="image" onChange={this.handleFileChange} style={{ display: 'block'}}/>
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <input type='submit' className='btn btn-primary' value='Float' onClick={this.handleClose}/>
+                        </Modal.Footer>
+                    </form>
+                </Modal>
             </div>
         )
     }
