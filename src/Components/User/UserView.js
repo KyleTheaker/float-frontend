@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchUserShow, fetchFollowingPost } from '../../Actions/userActions'
-import UserPost from './UserPost'
+import UserViewPost from './UserViewPost'
 
 class UserView extends Component {
 
@@ -22,6 +22,26 @@ class UserView extends Component {
         this.props.history.push('/home')
     }
 
+    unfollowUser = () => {
+        console.log('good')
+    }
+
+    renderFollowButton = () => {
+        this.condit = false
+
+        this.props.user.data.attributes.followers.forEach( obj => {
+            if (obj.id === parseInt(this.props.currentUser.data.id)) {
+                this.condit = true 
+            }
+        })
+
+        if (this.condit) {
+            return <button onClick={() => this.unfollowUser()} className='btn btn-secondary'>UNFOLLOW</button>
+        } else {
+            return <button onClick={() => this.followUser()} className='btn btn-secondary'>FOLLOW</button>
+        }
+    }
+
     renderHeader = () => {
         if (this.props.user.data.attributes.header_image !== null) {
             return this.props.user.data.attributes.header_image
@@ -31,7 +51,7 @@ class UserView extends Component {
     }
 
     renderUserShow = () => {
-        if (this.props.user.data !== undefined) {
+        if (this.props.user.data !== undefined && this.props.currentUser.data !== undefined) {
             return <div className='container text-white'>
             <div className='container' style={{ padding: '10px' }}>
                 <svg onClick={this.goHome} style={{ cursor: 'pointer' }} width="35px" height="35px" viewBox="0 0 16 16" className="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -61,10 +81,11 @@ class UserView extends Component {
                 <div className='col-md' style={{ padding: '35px'}}>
                     <div className='row' style={{ position: 'sticky', top: '0'}}>
                         <div className='col-md'>
-                            <h1>{this.props.user.data.attributes.name} <button onClick={() => this.followUser()} className='btn btn-secondary'>Follow</button></h1>
+                            <h1>{this.props.user.data.attributes.name}</h1>
                             <p className='text-muted'>@{this.props.user.data.attributes.username}</p>
                             <h5>{this.props.user.data.attributes.bio}</h5>
                             <p>{this.props.user.data.attributes.age}</p>
+                            {this.renderFollowButton()}
                         </div>
                         <div className='col-md'>
                             <h1 className='font-weight-lighter'>Posts: {this.props.user.data.attributes.posts.length}</h1>
@@ -75,7 +96,7 @@ class UserView extends Component {
                 </div>
                 <div className='col-md'>
                     <div className='border border-dark'>
-                        {this.props.user.data.attributes.posts.map(post => <UserPost key={post.id} post={post} user={this.props.user.data}/>).reverse()}
+                        {this.props.user.data.attributes.posts.map(post => <UserViewPost key={post.id} post={post} user={this.props.user.data}/>).reverse()}
                     </div>
                 </div>
             </div>

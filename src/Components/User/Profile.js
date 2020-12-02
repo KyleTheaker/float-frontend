@@ -26,7 +26,6 @@ class Profile extends Component {
     }
 
     render() {
-        console.log(this.props.user)
         return (
              <div className='container'>
                 <div className='container' style={{ padding: '10px' }}>
