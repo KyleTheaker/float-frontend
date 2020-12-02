@@ -94,9 +94,9 @@ class PostForm extends Component {
                                 <label htmlFor='image'>Image url</label>
                                 <input type='text' className='form-control' name='image' onChange={this.handleChange} value={this.state.image}/>
                             </div>
-                            <div className='form-group'>
-                                <label htmlFor="file">Upload Image From Computer</label>
-                                <input type="file" className='btn btn-secondary' accept="image/*" name="image" onChange={this.handleFileChange} style={{ display: 'block'}}/>
+                            <div className='custom-file'>
+                                <label htmlFor="file" className='custom-file-label'>Upload Image From Computer</label>
+                                <input type="file" className='custom-file-input' accept="image/*" name="image" onChange={this.handleFileChange} style={{ display: 'block'}}/>
                             </div>
                         </Modal.Body>
                         <Modal.Footer>

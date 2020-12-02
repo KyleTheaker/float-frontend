@@ -51,19 +51,31 @@ class Post extends Component {
     }
 
     render() {
+        // onClick={() => this.handleShow()}
         console.log(this.props.post)
         return (
             <div>
-                <div className='card shadow p-3 mb-5 bg-transparent rounded' onClick={() => this.handleShow()}>
+                <div className='card shadow p-3 mb-5 bg-transparent rounded' >
+                    <div className='card-header'>
+                        <Link key={this.props.post.user.id + 'u'} to={`/users/${this.props.post.user.id}`}>{this.props.post.user.username}</Link>
+                    </div>
                     <img src={this.props.post.image} className='card-img rounded' alt=''/>
                     <div className='card-body'>
                         <p>{this.props.post.text}</p>
                         <p>{this.state.likes} <span onClick={() => this.handleLikes(this.props.post_id)}>♡</span></p>
                         <footer className='blockquote-footer'>
-                            <cite>
+                            {/* <cite>
                                 <Link key={this.props.post.user.id + 'u'} to={`/users/${this.props.post.user.id}`}>{this.props.post.user.username}</Link>
-                            </cite>
+                            </cite> */}
+                            <p>{this.renderComments()}</p>
                         </footer>
+                        <form className='form-inline'>
+                            <div className='form-group'>
+                                <label></label>
+                                <input type='text' name='comment' className='form-control bg-transparent' placeholder='comment' />
+                            </div>
+                            <input type='submit' className='btn btn-light mx-sm-3' value='Post'/>
+                        </form>
                     </div>
                 </div>
 
