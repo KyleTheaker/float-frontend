@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createLike } from '../../Actions/likeActions'
+import { fetchPosts } from '../../Actions/postActions'
 import { Link } from 'react-router-dom'
 import { Modal } from 'react-bootstrap'
+import { createComment } from '../../Actions/commentActions'
 import Comment from '../Comment/Comment'
 
 class Post extends Component {
@@ -11,12 +13,13 @@ class Post extends Component {
         post_id: '',
         user_id: '',
         likes: this.props.post.likes.length,
-        show: false
+        show: false,
+        comment: ''
     }
 
     renderComments = () => {
         if (this.props.post.comments.length !== 0) {
-            return this.props.post.comments.map( comment => <Comment comment={comment} />)
+            return this.props.post.comments.map( comment => <Comment key={comment.id} comment={comment} />)
         }
     }
 
@@ -50,9 +53,28 @@ class Post extends Component {
         })
     }
 
+    handleChange = (e, post_id) => {
+        let { name, value } = e.target
+        this.setState({
+            [name]: value,
+            post_id: post_id,
+            user_id: this.props.user.data.id
+        }) 
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.createComment(this.state)
+        this.setState({ 
+            post_id: '',
+            user_id: '',
+            comment: ''
+        }, () => {
+            this.props.fetchPosts()
+        })
+    }
+
     render() {
-        // onClick={() => this.handleShow()}
-        console.log(this.props.post)
         return (
             <div>
                 <div className='card shadow p-3 mb-5 bg-transparent rounded' >
@@ -64,17 +86,13 @@ class Post extends Component {
                         <p>{this.props.post.text}</p>
                         <p>{this.state.likes} <span onClick={() => this.handleLikes(this.props.post_id)}>♡</span></p>
                         <footer className='blockquote-footer'>
-                            {/* <cite>
-                                <Link key={this.props.post.user.id + 'u'} to={`/users/${this.props.post.user.id}`}>{this.props.post.user.username}</Link>
-                            </cite> */}
                             <div className='overflow-auto'>
-                                <p>{this.renderComments()}</p>
+                                {this.renderComments()}
                             </div>
                         </footer>
-                        <form className='form-inline'>
+                        <form className='form-inline' onSubmit={this.handleSubmit}>
                             <div className='form-group'>
-                                <label></label>
-                                <input type='text' name='comment' className='form-control bg-transparent' placeholder='comment' />
+                                <input type='text' name='comment' className='form-control bg-transparent' placeholder='comment' onChange={(e) => this.handleChange(e, this.props.post_id)} value={this.state.comment}/>
                             </div>
                             <input type='submit' className='btn btn-light mx-sm-3' value='Post'/>
                         </form>
@@ -99,4 +117,4 @@ class Post extends Component {
     }
 }
 
-export default connect(null, { createLike })(Post)
+export default connect(null, { createLike, createComment, fetchPosts })(Post)
