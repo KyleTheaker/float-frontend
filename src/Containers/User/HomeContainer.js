@@ -22,15 +22,15 @@ class HomeContainer extends Component {
                                 <p></p>
                             </div>
                         </div>
-                        <div style={{ position: 'fixed' }}>
+                        <div className='position-fixed'>
                             <h1>Menu</h1>
                             <div>
                                 <PostForm />
                             </div>
                             <br/>
                             <div className='row'>
-                                <div className='col-sm'>
-                                    <button type='button' onClick={() => this.handleProfile()} className='btn btn-primary'>Profile</button>
+                                <div className='col'>
+                                    <button type='button' onClick={() => this.handleProfile()} className='btn btn-primary btn-lg btn-block'>Profile</button>
                                 </div>
                             </div>
                         </div>
