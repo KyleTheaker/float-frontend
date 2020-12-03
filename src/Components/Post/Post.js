@@ -67,7 +67,9 @@ class Post extends Component {
                             {/* <cite>
                                 <Link key={this.props.post.user.id + 'u'} to={`/users/${this.props.post.user.id}`}>{this.props.post.user.username}</Link>
                             </cite> */}
-                            <p>{this.renderComments()}</p>
+                            <div className='overflow-auto'>
+                                <p>{this.renderComments()}</p>
+                            </div>
                         </footer>
                         <form className='form-inline'>
                             <div className='form-group'>
@@ -86,7 +88,11 @@ class Post extends Component {
                     <img src={this.props.post.image} className='card-img rounded' alt=''/>
                     <Modal.Body>{this.props.post.text}</Modal.Body>
                     <h5>Comments</h5>
-                    <Modal.Footer>{this.renderComments()}</Modal.Footer>
+                    <Modal.Footer>
+                        <div className='overflow-auto'>
+                            {this.renderComments()}
+                        </div>
+                    </Modal.Footer>
                 </Modal>
             </div>
         )

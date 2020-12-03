@@ -11,10 +11,17 @@ class HomeContainer extends Component {
 
     render() {
         return (
-            <div className='container text-white'>
-                Home Page
+            <div className='container text-white p-2'>
                 <div className='row'>
                     <div className='col-sm'>
+                        <div>
+                            <div className='jumbotron text-dark'>
+                                <h1 className='display-4'>Welcome!</h1>
+                                <p className='lead'>Sample Jumbotron</p>
+                                <hr className='my-4'/>
+                                <p></p>
+                            </div>
+                        </div>
                         <div style={{ position: 'fixed' }}>
                             <h1>Menu</h1>
                             <div>
