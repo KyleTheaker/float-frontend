@@ -32,7 +32,6 @@ export const createPost = (info) => {
             .then(resp => { return resp.json() })
             .then(data => {
                 dispatch({ type: 'ADD_POST', data })
-                // dispatch({ type: 'GET_POSTS' })
             })
         }
     }

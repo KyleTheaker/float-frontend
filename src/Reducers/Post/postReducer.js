@@ -16,6 +16,7 @@ export default function postReducer(state = initialState, action) {
                 requesting: false
             }
         case 'ADD_POST':
+            console.log(action.data)
             return {
                 ...state,
                 posts: [...state.posts.post.data, action.data],

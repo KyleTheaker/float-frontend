@@ -96,7 +96,7 @@ class UserView extends Component {
                 </div>
                 <div className='col-md'>
                     <div className='border border-dark'>
-                        {this.props.user.data.attributes.posts.map(post => <UserViewPost key={post.id} post={post} user={this.props.user.data}/>).reverse()}
+                        {this.props.user.data.attributes.posts.sort((a, b) => b.id - a.id).map(post => <UserViewPost key={post.id} post={post} user={this.props.user.data}/>)}
                     </div>
                 </div>
             </div>

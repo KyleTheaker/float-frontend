@@ -15,9 +15,9 @@ class PostForm extends Component {
         show: false
     }
 
-    componentDidUpdate() {
-        this.props.fetchPosts()
-    }
+    // componentDidUpdate() {
+    //     this.props.fetchPosts()
+    // }
 
     handleChange = e => {
         let { name, value } = e.target
